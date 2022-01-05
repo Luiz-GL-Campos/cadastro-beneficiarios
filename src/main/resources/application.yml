@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: cadastro-beneficiarios
+  datasource:
+    url: jdbc:postgresql://localhost:5434/db_beneficiario
+    username: beneficiario_web
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
