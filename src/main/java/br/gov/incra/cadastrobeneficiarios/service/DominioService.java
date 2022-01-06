@@ -3,6 +3,8 @@ package br.gov.incra.cadastrobeneficiarios.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import br.gov.incra.cadastrobeneficiarios.model.dto.BancoDTO;
 import br.gov.incra.cadastrobeneficiarios.model.dto.EscolaridadeDTO;
 import br.gov.incra.cadastrobeneficiarios.model.dto.EstadoDTO;
@@ -18,6 +20,7 @@ import br.gov.incra.cadastrobeneficiarios.model.repository.SituacaoRepository;
 import br.gov.incra.cadastrobeneficiarios.model.repository.TipoContaRepository;
 import br.gov.incra.cadastrobeneficiarios.model.repository.TipoTelefoneRepository;
 
+@Service
 public class DominioService {
     private final BancoRepository bancoRepository;
     private final EscolaridadeRepository escolaridadeRepository;
