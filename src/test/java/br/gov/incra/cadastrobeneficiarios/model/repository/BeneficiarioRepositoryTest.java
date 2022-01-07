@@ -1,11 +1,20 @@
 package br.gov.incra.cadastrobeneficiarios.model.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -14,15 +23,49 @@ import br.gov.incra.cadastrobeneficiarios.model.builder.BeneficiarioBuilder;
 import br.gov.incra.cadastrobeneficiarios.model.entity.Beneficiario;
 
 @SpringBootTest
+@TestInstance(Lifecycle.PER_CLASS)
+@TestMethodOrder(OrderAnnotation.class)
 public class BeneficiarioRepositoryTest {
     
     @Autowired
     private BeneficiarioRepository beneficiarioRepository;
+    private Beneficiario beneficiario;
 
     @Test
     @Rollback(false)
+    @Order(1)
     public void deveCadastrarBeneficiario(){
-        Beneficiario beneficiario = new BeneficiarioBuilder()
+        Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
+        assertNotNull(beneficiarioSalvo);
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(2)
+    public void deveAlterarBeneficiario(){
+        beneficiario.setNomeBeneficiario("Flavinho do Pneu");
+        beneficiario.setDataNascimentoBeneficiario(LocalDate.of(2000, 4, 12));
+        beneficiario.setIdEscolaridade(8L);
+        Beneficiario beneficiarioAlteradoSalvo = beneficiarioRepository.save(beneficiario);
+        assertNotNull(beneficiarioAlteradoSalvo);
+        assertEquals("Flavinho do Pneu", beneficiarioAlteradoSalvo.getNomeBeneficiario());
+        assertEquals(LocalDate.of(2000, 4, 12), beneficiarioAlteradoSalvo.getDataNascimentoBeneficiario());
+        assertEquals(8L, beneficiarioAlteradoSalvo.getIdEscolaridade());
+    }
+
+    @Test
+    @Rollback(false)
+    @Order(3)
+    public void deveExcluirBeneficiario(){
+        beneficiarioRepository.delete(beneficiario);
+        Optional<Beneficiario> beneficiario = beneficiarioRepository.findById("04857636131");
+        assertFalse(beneficiario.isPresent());
+
+    }
+
+    @BeforeAll
+    public void iniciar(){
+        beneficiario = new BeneficiarioBuilder()
             .cpf("04857636131")
             .nome("Luiz")
             .dataNascimento(LocalDate.of(1999, 12, 23))
@@ -31,13 +74,13 @@ public class BeneficiarioRepositoryTest {
             .idGenero(1L)
             .idEscolaridade(7L)
         .Build();
-        Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
-        assertNotNull(beneficiarioSalvo);
     }
 
-    @AfterEach
+
+    @AfterAll
     @Rollback(false)
     public void finalizarTeste(){
+        System.out.println("finalizou");
         beneficiarioRepository.deleteAll();
     }
 

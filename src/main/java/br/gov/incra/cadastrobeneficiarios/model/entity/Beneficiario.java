@@ -49,6 +49,96 @@ public class Beneficiario {
     @JoinColumn(name = "id_escolaridade", insertable = false, updatable = false)
     private Genero escolaridade;
 
+
+    public String getCpfBeneficiario() {
+        return this.cpfBeneficiario;
+    }
+
+    public void setCpfBeneficiario(String cpfBeneficiario) {
+        this.cpfBeneficiario = cpfBeneficiario;
+    }
+
+    public String getNomeBeneficiario() {
+        return this.nomeBeneficiario;
+    }
+
+    public void setNomeBeneficiario(String nomeBeneficiario) {
+        this.nomeBeneficiario = nomeBeneficiario;
+    }
+
+    public LocalDate getDataNascimentoBeneficiario() {
+        return this.dataNascimentoBeneficiario;
+    }
+
+    public void setDataNascimentoBeneficiario(LocalDate dataNascimentoBeneficiario) {
+        this.dataNascimentoBeneficiario = dataNascimentoBeneficiario;
+    }
+
+    public Long getNumeroRgBeneficiario() {
+        return this.numeroRgBeneficiario;
+    }
+
+    public void setNumeroRgBeneficiario(Long numeroRgBeneficiario) {
+        this.numeroRgBeneficiario = numeroRgBeneficiario;
+    }
+
+    public String getOrgaoEmissorRg() {
+        return this.orgaoEmissorRg;
+    }
+
+    public void setOrgaoEmissorRg(String orgaoEmissorRg) {
+        this.orgaoEmissorRg = orgaoEmissorRg;
+    }
+
+    public LocalDate getDataEmissaoRg() {
+        return this.dataEmissaoRg;
+    }
+
+    public void setDataEmissaoRg(LocalDate dataEmissaoRg) {
+        this.dataEmissaoRg = dataEmissaoRg;
+    }
+
+    public String getNomeAssentamento() {
+        return this.nomeAssentamento;
+    }
+
+    public void setNomeAssentamento(String nomeAssentamento) {
+        this.nomeAssentamento = nomeAssentamento;
+    }
+
+    public Long getIdGenero() {
+        return this.idGenero;
+    }
+
+    public void setIdGenero(Long idGenero) {
+        this.idGenero = idGenero;
+    }
+
+    public Long getIdEscolaridade() {
+        return this.idEscolaridade;
+    }
+
+    public void setIdEscolaridade(Long idEscolaridade) {
+        this.idEscolaridade = idEscolaridade;
+    }
+
+    public Genero getGenero() {
+        return this.genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public Genero getEscolaridade() {
+        return this.escolaridade;
+    }
+
+    public void setEscolaridade(Genero escolaridade) {
+        this.escolaridade = escolaridade;
+    }
+
+
     public Beneficiario(){}
 
     public Beneficiario(
