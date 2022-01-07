@@ -10,9 +10,9 @@ import javax.persistence.Table;
 public class Situacao {
     @Id
     @Column(name = "id_situacao")
-    Long idSituacao;
+    private Long idSituacao;
     @Column(name = "descricao_situacao")
-    String descricaoSituacao;
+    private String descricaoSituacao;
 
     public Long getIdSituacao() {
         return this.idSituacao;

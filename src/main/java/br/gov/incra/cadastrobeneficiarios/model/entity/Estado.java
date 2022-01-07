@@ -10,11 +10,11 @@ import javax.persistence.Table;
 public class Estado {
     @Id
     @Column(name = "id_estado")
-    Long idEstado;
+    private Long idEstado;
     @Column(name = "sigla_estado")
-    String siglaEstado;
+    private String siglaEstado;
     @Column(name = "nome_estado")
-    String nomeEstado;
+    private String nomeEstado;
 
     public Long getIdEstado() {
         return this.idEstado;

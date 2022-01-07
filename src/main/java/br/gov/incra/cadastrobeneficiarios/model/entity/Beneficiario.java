@@ -15,31 +15,31 @@ import javax.persistence.Table;
 public class Beneficiario {
     @Id
     @Column(name = "cpf_beneficiario")
-    String cpfBeneficiario;
+    private String cpfBeneficiario;
 
     @Column(name = "nome_beneficiario")
-    String nomeBeneficiario;
+    private String nomeBeneficiario;
 
     @Column(name = "data_nascimento_beneficiario")
-    LocalDate dataNascimentoBeneficiario;
+    private LocalDate dataNascimentoBeneficiario;
 
     @Column(name = "numero_rg_beneficiario")
-    Long numeroRgBeneficiario;
+    private Long numeroRgBeneficiario;
 
     @Column(name = "orgao_emissor_rg")
-    String orgaoEmissorRg;
+    private String orgaoEmissorRg;
 
     @Column(name = "data_emissao_rg")
-    LocalDate dataEmissaoRg;
+    private LocalDate dataEmissaoRg;
 
     @Column(name = "nome_assentamento")
-    String nomeAssentamento;
+    private String nomeAssentamento;
 
     @Column(name = "id_genero")
-    Long idGenero;
+    private Long idGenero;
 
     @Column(name = "id_escolaridade")
-    Long idEscolaridade;
+    private Long idEscolaridade;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_genero", insertable = false, updatable = false)
@@ -47,7 +47,7 @@ public class Beneficiario {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_escolaridade", insertable = false, updatable = false)
-    private Genero escolaridade;
+    private Escolaridade escolaridade;
 
 
     public String getCpfBeneficiario() {
@@ -130,11 +130,11 @@ public class Beneficiario {
         this.genero = genero;
     }
 
-    public Genero getEscolaridade() {
+    public Escolaridade getEscolaridade() {
         return this.escolaridade;
     }
 
-    public void setEscolaridade(Genero escolaridade) {
+    public void setEscolaridade(Escolaridade escolaridade) {
         this.escolaridade = escolaridade;
     }
 

@@ -10,9 +10,9 @@ import javax.persistence.Table;
 public class Escolaridade {
     @Id
     @Column(name = "id_escolaridade")
-    Long idEscolaridade;
+    private Long idEscolaridade;
     @Column(name = "nivel_escolaridade")
-    String nivelEscolaridade;
+    private String nivelEscolaridade;
 
     public Long getIdEscolaridade() {
         return this.idEscolaridade;
