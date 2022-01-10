@@ -25,7 +25,6 @@ import br.gov.incra.cadastrobeneficiarios.model.builder.BeneficiarioBuilder;
 import br.gov.incra.cadastrobeneficiarios.model.builder.EnderecoBuilder;
 import br.gov.incra.cadastrobeneficiarios.model.entity.Beneficiario;
 import br.gov.incra.cadastrobeneficiarios.model.entity.Endereco;
-import br.gov.incra.cadastrobeneficiarios.model.entity.Estado;
 import br.gov.incra.cadastrobeneficiarios.model.entity.Municipio;
 
 @SpringBootTest
@@ -35,13 +34,10 @@ public class EnderecoRepositoryTest {
     @Autowired
     private BeneficiarioRepository beneficiarioRepository;
     @Autowired
-    private EstadoRepository estadoRepository;
-    @Autowired
     private MunicipioRepository municipioRepository;
     @Autowired
     private EnderecoRepository enderecoRepository;
     private Beneficiario beneficiario;
-    private Estado estado;
     private Municipio municipio;
     private Endereco endereco;
 
@@ -49,13 +45,13 @@ public class EnderecoRepositoryTest {
     @Rollback(false)
     @Order(1)
     public void naoDeveCadastrarEndereco(){
-        endereco = new EnderecoBuilder()
+        Endereco endereco = new EnderecoBuilder()
             .cep("70762500")
                 .bairro("Asa Norte")
                 .endereco("Asa Norte Comércio Local Norte 112")
                 .enderecoAtivo(false)
                 .numero("112")
-                .cpfBeneficiario(beneficiario.getCpfBeneficiario())
+                .cpfBeneficiario("0000012")
                 .idMunicipio(municipio.getIdMunicipio())
             .Build();
             assertThrows(
@@ -73,8 +69,6 @@ public class EnderecoRepositoryTest {
     public void deveCadastrarEndereco(){
         Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioSalvo);
-        Estado estadoSalvo = estadoRepository.save(estado);
-        assertNotNull(estadoSalvo);
         Municipio municipioSalvo = municipioRepository.save(municipio);
         assertNotNull(municipioSalvo);
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -87,8 +81,6 @@ public class EnderecoRepositoryTest {
     public void deveAlterarEndereco(){
         Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioSalvo);
-        Estado estadoSalvo = estadoRepository.save(estado);
-        assertNotNull(estadoSalvo);
         Municipio municipioSalvo = municipioRepository.save(municipio);
         assertNotNull(municipioSalvo);
         Endereco enderecoSalvo = enderecoRepository.save(endereco);
@@ -131,7 +123,6 @@ public class EnderecoRepositoryTest {
             .idGenero(1L)
             .idEscolaridade(7L)
         .Build();
-        estado = new Estado(53L, "DF", "Distrito Federal");
         municipio = new Municipio(5300108L, "Brasilia", 53L);
         endereco = new EnderecoBuilder()
             .cep("70304000")
@@ -149,6 +140,7 @@ public class EnderecoRepositoryTest {
     @Rollback(false)
     public void finalizar(){
         enderecoRepository.deleteAll();
+        municipioRepository.deleteAll();
         beneficiarioRepository.deleteAll();
     }
 }

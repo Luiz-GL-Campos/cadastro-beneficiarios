@@ -43,14 +43,14 @@ public class BeneficiarioRepositoryTest {
     @Rollback(false)
     @Order(2)
     public void deveAlterarBeneficiario(){
-        beneficiario.setNomeBeneficiario("Flavinho do Pneu");
-        beneficiario.setDataNascimentoBeneficiario(LocalDate.of(2000, 4, 12));
-        beneficiario.setIdEscolaridade(8L);
+        beneficiario.setNomeBeneficiario("Flavinho");
+        beneficiario.setDataNascimentoBeneficiario(LocalDate.of(1998, 6, 2));
+        beneficiario.setIdEscolaridade(6L);
         Beneficiario beneficiarioAlteradoSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioAlteradoSalvo);
-        assertEquals("Flavinho do Pneu", beneficiarioAlteradoSalvo.getNomeBeneficiario());
-        assertEquals(LocalDate.of(2000, 4, 12), beneficiarioAlteradoSalvo.getDataNascimentoBeneficiario());
-        assertEquals(8L, beneficiarioAlteradoSalvo.getIdEscolaridade());
+        assertEquals("Flavinho", beneficiarioAlteradoSalvo.getNomeBeneficiario());
+        assertEquals(LocalDate.of(1998, 6, 2), beneficiarioAlteradoSalvo.getDataNascimentoBeneficiario());
+        assertEquals(6L, beneficiarioAlteradoSalvo.getIdEscolaridade());
     }
 
     @Test
@@ -80,7 +80,6 @@ public class BeneficiarioRepositoryTest {
     @AfterAll
     @Rollback(false)
     public void finalizarTeste(){
-        System.out.println("finalizou");
         beneficiarioRepository.deleteAll();
     }
 

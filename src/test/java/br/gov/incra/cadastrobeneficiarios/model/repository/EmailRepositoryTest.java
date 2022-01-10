@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -96,6 +97,12 @@ public class EmailRepositoryTest {
             .idGenero(1L)
             .idEscolaridade(7L)
         .Build();
+    }
+
+    @AfterAll
+    @Rollback(false)
+    public void finalizarTeste(){
+        emailRepository.deleteAll();
     }
     
 }
