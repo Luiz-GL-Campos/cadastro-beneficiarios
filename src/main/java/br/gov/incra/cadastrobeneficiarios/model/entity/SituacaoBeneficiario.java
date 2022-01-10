@@ -17,11 +17,8 @@ public class SituacaoBeneficiario {
 
     public SituacaoBeneficiario () {}
 
-    public SituacaoBeneficiario (SituacaoBeneficiarioId situacaoBeneficiarioId) {
+    public SituacaoBeneficiario (SituacaoBeneficiarioId situacaoBeneficiarioId, LocalDate dataAtualizacao) {
         this.situacaoBeneficiarioId = situacaoBeneficiarioId;
-    }
-
-    public SituacaoBeneficiario (LocalDate dataAtualizacao){
         this.dataAtualizacao = dataAtualizacao;
     }
 
@@ -31,5 +28,9 @@ public class SituacaoBeneficiario {
 
     public void setDataAtualizacao(LocalDate dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public SituacaoBeneficiarioId getSituacaoBeneficiarioId() {
+        return this.situacaoBeneficiarioId;
     }
 }
