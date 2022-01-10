@@ -15,17 +15,24 @@ public class Estado {
     private String siglaEstado;
     @Column(name = "nome_estado")
     private String nomeEstado;
-
+    
     public Long getIdEstado() {
         return this.idEstado;
     }
-
+    
     public String getSiglaEstado() {
         return this.siglaEstado;
     }
-
+    
     public String getNomeEstado() {
         return this.nomeEstado;
     }
 
+    public Estado() {}
+    
+    public Estado(Long idEstado, String siglaEstado, String nomeEstado) {
+        this.idEstado = idEstado;
+        this.siglaEstado = siglaEstado;
+        this.nomeEstado = nomeEstado;
+    }
 }

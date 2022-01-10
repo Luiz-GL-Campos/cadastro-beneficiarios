@@ -22,4 +22,13 @@ public class Banco {
         return this.nomeBanco;
     }
 
+    public Banco() {}
+
+    public Banco(
+        Long codBanco,
+        String nomeBanco
+    ){
+        this.codBanco = codBanco;
+        this.nomeBanco = nomeBanco;
+    }
 }

@@ -22,4 +22,10 @@ public class TipoConta {
         return this.tipoConta;
     }
 
+    public TipoConta (){}
+
+    public TipoConta (Long idTipoConta,String tipoConta) {
+        this.idTipoConta = idTipoConta;
+        this.tipoConta = tipoConta;
+    }
 }
