@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.EmailForm;
+
 @Entity
 @Table(name = "email", schema = "beneficiario")
 public class Email {
@@ -38,6 +40,10 @@ public class Email {
         this.cpf = cpf;
     }
 
+
+    public Email(EmailForm email) {
+        this.enderecoEmail = email.getEnderecoEmail();
+    }
 
     public Long getIdEmail() {
         return this.idEmail;

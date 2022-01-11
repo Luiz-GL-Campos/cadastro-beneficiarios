@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.EnderecoForm;
+
 @Entity
 @Table(name = "endereco", schema = "beneficiario")
 public class Endereco {
@@ -50,6 +52,15 @@ public class Endereco {
         this.idMunicipio = idMunicipio;
     }
 
+
+    public Endereco(EnderecoForm enderecoForm) {
+        this.cep = enderecoForm.getCep();
+        this.bairro = enderecoForm.getBairro();
+        this.endereco = enderecoForm.getEndereco();
+        this.enderecoAtivo = enderecoForm.getEnderecoAtivo();
+        this.numero = enderecoForm.getNumero();
+        this.idMunicipio = enderecoForm.getMunicipioForm().getIdMunicipio();
+    }
 
     public Long getIdEndereco() {
         return this.idEndereco;

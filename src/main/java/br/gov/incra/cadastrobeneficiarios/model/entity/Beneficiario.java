@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
+
 @Entity
 @Table(name = "beneficiario", schema = "beneficiario")
 public class Beneficiario {
@@ -147,8 +149,7 @@ public class Beneficiario {
         LocalDate dataNascimentoBeneficiario, 
         Long numeroRgBeneficiario, 
         String orgaoEmissorRg, 
-        LocalDate dataEmissaoRg, 
-        String nomeAssentamento, 
+        LocalDate dataEmissaoRg,  
         Long idGenero, 
         Long idEscolaridade
     ) {
@@ -158,9 +159,19 @@ public class Beneficiario {
         this.numeroRgBeneficiario = numeroRgBeneficiario;
         this.orgaoEmissorRg = orgaoEmissorRg;
         this.dataEmissaoRg = dataEmissaoRg;
-        this.nomeAssentamento = nomeAssentamento;
         this.idGenero = idGenero;
         this.idEscolaridade = idEscolaridade;
+    }
+
+    public Beneficiario(BeneficiarioForm beneficiario) {
+        this.cpfBeneficiario = beneficiario.getCpf();
+        this.nomeBeneficiario = beneficiario.getNome();
+        this.dataNascimentoBeneficiario = beneficiario.getDataNascimento();
+        this.numeroRgBeneficiario = beneficiario.getRg();
+        this.orgaoEmissorRg = beneficiario.getOrgaoEmissor();
+        this.dataEmissaoRg = beneficiario.getDataEmissao();
+        this.idGenero = beneficiario.getIdGenero();
+        this.idEscolaridade = beneficiario.getIdEscolaridade();
     }
     
 }
