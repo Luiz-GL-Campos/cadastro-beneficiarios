@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.form.EmailForm;
 
 @Entity
@@ -32,17 +33,17 @@ public class Email {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpf_beneficiario", insertable = false, updatable = false)
     private Beneficiario cpfBeneficiario;
-
+    
     public Email(){}
 
     public Email(String enderecoEmail, String cpf) {
         this.enderecoEmail = enderecoEmail;
         this.cpf = cpf;
     }
-
-
-    public Email(EmailForm email) {
+    
+    public Email(EmailForm email, BeneficiarioForm beneficiarioForm){
         this.enderecoEmail = email.getEnderecoEmail();
+        this.cpf = beneficiarioForm.getCpf();
     }
 
     public Long getIdEmail() {

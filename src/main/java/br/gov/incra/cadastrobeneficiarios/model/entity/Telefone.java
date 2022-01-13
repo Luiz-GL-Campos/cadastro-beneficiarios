@@ -11,31 +11,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.form.TelefoneForm;
 
 @Entity
-@Table(name = "TELEFONE", schema = "BENEFICIARIO")
+@Table(name = "telefone", schema = "beneficiario")
 public class Telefone {
     @Id
-    @Column(name = "ID_TELEFONE")
-    @SequenceGenerator(name = "BENEFICIARIO.ID_TELEFONE_SEQ", sequenceName = "BENEFICIARIO.ID_TELEFONE_SEQ", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(generator = "BENEFICIARIO.ID_TELEFONE_SEQ", strategy = GenerationType.SEQUENCE)
+    @Column(name = "id_telefone")
+    @SequenceGenerator(name = "beneficiario.id_telefone_seq", sequenceName = "beneficiario.id_telefone_seq", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "beneficiario.id_telefone_seq", strategy = GenerationType.SEQUENCE)
     private Long idTelefone;
-    @Column(name = "NUMERO_TELEFONE")
+    @Column(name = "numero_telefone")
     private String numeroTelefone;
-    @Column(name = "ATIVO")
+    @Column(name = "telefone_ativo")
     private Boolean ativo;
-    @Column(name = "ID_TIPO_TELEFONE")
-    private Long idTipoTelefone;
-    @Column(name = "CPF")
+    @Column(name = "cpf_beneficiario")
     private String cpf;
+    @Column(name = "id_tipo_telefone")
+    private Long idTipoTelefone;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_TIPO_TELEFONE", insertable = false, updatable = false)
-    private TipoTelefone tipoTelefone;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CPF", insertable = false, updatable = false)
+    @JoinColumn(name = "cpf_beneficiario", insertable = false, updatable = false)
     private Beneficiario beneficiario;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo_telefone", insertable = false, updatable = false)
+    private TipoTelefone tipoTelefone;
+    
     public Telefone () {}
 
     public Telefone(String numeroTelefone, Boolean ativo, Long idTipoTelefone, String cpf) {
@@ -45,10 +46,11 @@ public class Telefone {
         this.cpf = cpf;
     }
 
-    public Telefone(TelefoneForm telefone) {
+    public Telefone(TelefoneForm telefone, BeneficiarioForm beneficiarioForm) {
         this.numeroTelefone = telefone.getNumeroTelefone();
         this.ativo = telefone.getTelefoneAtivo();
         this.idTipoTelefone = telefone.getIdTipoTelefone();
+        this.cpf = beneficiarioForm.getCpf();
     }
 
     public String getNumeroTelefone() {

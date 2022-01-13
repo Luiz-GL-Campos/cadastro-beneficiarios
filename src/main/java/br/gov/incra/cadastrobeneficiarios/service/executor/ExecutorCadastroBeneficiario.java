@@ -1,10 +1,13 @@
 package br.gov.incra.cadastrobeneficiarios.service.executor;
 
+import org.springframework.stereotype.Service;
+
 import br.gov.incra.cadastrobeneficiarios.form.CadastroBeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.model.entity.Beneficiario;
 import br.gov.incra.cadastrobeneficiarios.model.repository.BeneficiarioRepository;
 import br.gov.incra.cadastrobeneficiarios.service.AcaoCadastroBeneficiario;
 
+@Service
 public class ExecutorCadastroBeneficiario implements AcaoCadastroBeneficiario {
 
     private final BeneficiarioRepository beneficiarioRepository;

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.form.EnderecoForm;
 
 @Entity
@@ -52,14 +53,14 @@ public class Endereco {
         this.idMunicipio = idMunicipio;
     }
 
-
-    public Endereco(EnderecoForm enderecoForm) {
+    public Endereco(EnderecoForm enderecoForm, BeneficiarioForm beneficiarioForm) {
         this.cep = enderecoForm.getCep();
         this.bairro = enderecoForm.getBairro();
         this.endereco = enderecoForm.getEndereco();
         this.enderecoAtivo = enderecoForm.getEnderecoAtivo();
         this.numero = enderecoForm.getNumero();
         this.idMunicipio = enderecoForm.getMunicipioForm().getIdMunicipio();
+        this.cpfBeneficiario = beneficiarioForm.getCpf();
     }
 
     public Long getIdEndereco() {

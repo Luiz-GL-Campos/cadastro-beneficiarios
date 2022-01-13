@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.form.ContaForm;
 
 @Entity
@@ -58,11 +59,12 @@ public class Conta {
         this.cpfBeneficiario = cpfBeneficiario;
     }
 
-    public Conta(ContaForm conta) {
+    public Conta(ContaForm conta, BeneficiarioForm beneficiarioForm) {
         this.agencia = conta.getAgencia();
         this.numeroConta = conta.getNumeroConta();
         this.idTipoConta = conta.getIdTipoConta();
         this.codBanco = conta.getCodBanco();
+        this.cpfBeneficiario = beneficiarioForm.getCpf();
     }
 
     public String getAgencia() {

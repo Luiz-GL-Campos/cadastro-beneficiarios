@@ -41,7 +41,7 @@ public class SituacaoBeneficiarioRepositoryTest {
     @Rollback(false)
     @Order(1)
     public void naoDeveCadastrarSituacaoBeneficiario() {
-        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId("12345678900", 2L) ,LocalDate.of(2011, 9, 24));
+        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId("12345678900", 2L));
         assertThrows(
             DataIntegrityViolationException.class, 
             () -> {
@@ -56,7 +56,7 @@ public class SituacaoBeneficiarioRepositoryTest {
     public void deveCadastrarSituacaoBeneficiario(){
         Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioSalvo);
-        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L), LocalDate.of(2010, 9, 24));
+        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L));
         SituacaoBeneficiario situacaoBeneficiarioSalva = situacaoBeneficiarioRepository.save(situacaoBeneficiario);
         assertNotNull(situacaoBeneficiarioSalva);
     }
@@ -67,7 +67,7 @@ public class SituacaoBeneficiarioRepositoryTest {
     public void deveAlterarSituacaoBeneficiario(){
         Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioSalvo);
-        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L), LocalDate.of(2010, 9, 24));
+        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L));
         situacaoBeneficiarioRepository.save(situacaoBeneficiario);
         situacaoBeneficiario.setDataAtualizacao(LocalDate.of(2012, 10, 25));
         SituacaoBeneficiario situacaoBeneficiarioAlteradaSalva = situacaoBeneficiarioRepository.save(situacaoBeneficiario);
@@ -81,7 +81,7 @@ public class SituacaoBeneficiarioRepositoryTest {
     public void deveExcluirSituacaoBeneficiario(){
         Beneficiario beneficiarioSalvo = beneficiarioRepository.save(beneficiario);
         assertNotNull(beneficiarioSalvo);
-        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L), LocalDate.of(2010, 9, 24));
+        SituacaoBeneficiario situacaoBeneficiario = new SituacaoBeneficiario(new SituacaoBeneficiarioId(beneficiario.getCpfBeneficiario(), 2L));
         situacaoBeneficiarioRepository.save(situacaoBeneficiario);
         situacaoBeneficiarioRepository.delete(situacaoBeneficiario);
         Optional<SituacaoBeneficiario> situacaoBeneficiarioExcluida = situacaoBeneficiarioRepository.findById(situacaoBeneficiario.getSituacaoBeneficiarioId());

@@ -140,8 +140,9 @@ public class Beneficiario {
         this.escolaridade = escolaridade;
     }
 
-
     public Beneficiario(){}
+
+    public Beneficiario(String cpf, String nome, LocalDate dataNascimento, Long rg, String orgaoEmissor, LocalDate dataEmissao, String assentamento, Long idGenero, Long idEscolaridade){}
 
     public Beneficiario(
         String cpfBeneficiario, 

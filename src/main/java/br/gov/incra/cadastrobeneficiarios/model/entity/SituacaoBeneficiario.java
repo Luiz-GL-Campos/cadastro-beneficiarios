@@ -7,6 +7,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.BeneficiarioForm;
+
 @Entity
 @Table(name = "situacao_beneficiario", schema = "beneficiario")
 public class SituacaoBeneficiario {
@@ -15,11 +17,15 @@ public class SituacaoBeneficiario {
     @Column(name = "data_atualizacao")
     private LocalDate dataAtualizacao;
 
-    public SituacaoBeneficiario () {}
+    public SituacaoBeneficiario (){}
 
-    public SituacaoBeneficiario (SituacaoBeneficiarioId situacaoBeneficiarioId, LocalDate dataAtualizacao) {
+    public SituacaoBeneficiario (SituacaoBeneficiarioId situacaoBeneficiarioId, LocalDate dataAtualizacao, BeneficiarioForm beneficiarioForm) {
         this.situacaoBeneficiarioId = situacaoBeneficiarioId;
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public SituacaoBeneficiario(SituacaoBeneficiarioId situacaoBeneficiarioId) {
+        this.situacaoBeneficiarioId = situacaoBeneficiarioId;
     }
 
     public LocalDate getDataAtualizacao() {

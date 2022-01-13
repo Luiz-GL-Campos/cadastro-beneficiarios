@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.gov.incra.cadastrobeneficiarios.form.MunicipioForm;
+
 @Entity
 @Table(name = "municipio", schema = "beneficiario")
 public class Municipio {
@@ -30,6 +32,12 @@ public class Municipio {
         this.idEstado = idEstado;
     }
     
+    public Municipio(MunicipioForm municipioForm) {
+        this.idMunicipio = municipioForm.getIdMunicipio();
+        this.nomeMunicipio = municipioForm.getNomeMunicipio();
+        this.idEstado = municipioForm.getIdEstado();
+    }
+
     public Long getIdMunicipio() {
         return this.idMunicipio;
     }
