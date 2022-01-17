@@ -82,4 +82,26 @@ public class Conta {
     public void setNumeroConta(String numeroConta) {
         this.numeroConta = numeroConta;
     }
+
+    public Long getIdConta() {
+        return this.idConta;
+    }
+
+    public String getCpfBeneficiario() {
+        return this.cpfBeneficiario;
+    }
+
+    public TipoConta getTipoConta() {
+        return this.tipoConta;
+    }
+
+    public Banco getBanco() {
+        return this.banco;
+    }
+
+    public Beneficiario getBeneficiario() {
+        return this.beneficiario;
+    }
+    
+
 }

@@ -24,6 +24,7 @@ public class Municipio {
     @JoinColumn(name = "id_estado", insertable = false, updatable = false)
     private Estado estado;
 
+
     public Municipio() {}
 
     public Municipio(Long idMunicipio, String nomeMunicipio, Long idEstado) {
@@ -41,4 +42,13 @@ public class Municipio {
     public Long getIdMunicipio() {
         return this.idMunicipio;
     }
+
+    public String getNomeMunicipio() {
+        return this.nomeMunicipio;
+    }
+
+    public Estado getEstado() {
+        return this.estado;
+    }
+
 }

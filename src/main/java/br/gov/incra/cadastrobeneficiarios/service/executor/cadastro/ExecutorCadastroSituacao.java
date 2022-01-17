@@ -1,4 +1,4 @@
-package br.gov.incra.cadastrobeneficiarios.service.executor;
+package br.gov.incra.cadastrobeneficiarios.service.executor.cadastro;
 
 import org.springframework.stereotype.Service;
 

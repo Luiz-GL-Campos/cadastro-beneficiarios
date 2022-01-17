@@ -72,4 +72,12 @@ public class Telefone {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
+
+    public Long getIdTelefone() {
+        return this.idTelefone;
+    }
+
+    public TipoTelefone getTipoTelefone() {
+        return this.tipoTelefone;
+    }
 }

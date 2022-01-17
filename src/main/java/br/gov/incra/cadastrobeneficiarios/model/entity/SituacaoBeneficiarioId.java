@@ -5,6 +5,9 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class SituacaoBeneficiarioId implements Serializable {
@@ -14,6 +17,10 @@ public class SituacaoBeneficiarioId implements Serializable {
 
     @Column(name = "id_situacao")
     private Long idSituacao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_SITUACAO", insertable = false, updatable = false)
+    private Situacao situacao;
 
     public SituacaoBeneficiarioId (){}
 
@@ -36,5 +43,9 @@ public class SituacaoBeneficiarioId implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(cpf, idSituacao);
+    }
+
+    public Situacao getSituacao() {
+        return this.situacao;
     }
 }

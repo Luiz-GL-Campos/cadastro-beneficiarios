@@ -2,9 +2,12 @@ package br.gov.incra.cadastrobeneficiarios.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,6 +36,12 @@ public class Endereco {
     private String cpfBeneficiario;
     @Column(name = "id_municipio")
     private Long idMunicipio;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CPF", insertable = false, updatable = false)
+    private Beneficiario beneficiario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_MUNICIPIO", insertable = false, updatable = false)
+    private Municipio municipio;
 
     public Endereco() {}
 
@@ -59,9 +68,10 @@ public class Endereco {
         this.endereco = enderecoForm.getEndereco();
         this.enderecoAtivo = enderecoForm.getEnderecoAtivo();
         this.numero = enderecoForm.getNumero();
-        this.idMunicipio = enderecoForm.getMunicipioForm().getIdMunicipio();
         this.cpfBeneficiario = beneficiarioForm.getCpf();
+        this.idMunicipio = enderecoForm.getMunicipioForm().getIdMunicipio();
     }
+
 
     public Long getIdEndereco() {
         return this.idEndereco;
@@ -129,6 +139,10 @@ public class Endereco {
 
     public void setIdMunicipio(Long idMunicipio) {
         this.idMunicipio = idMunicipio;
+    }
+
+    public Municipio getMunicipio(){
+        return this.municipio;
     }
 
 }
