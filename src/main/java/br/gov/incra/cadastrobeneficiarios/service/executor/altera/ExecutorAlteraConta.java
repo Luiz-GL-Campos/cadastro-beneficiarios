@@ -1,16 +1,16 @@
 package br.gov.incra.cadastrobeneficiarios.service.executor.altera;
 
-import br.gov.incra.cadastrobeneficiarios.model.repository.EmailRepository;
-import br.gov.incra.cadastrobeneficiarios.service.executor.AbstractExecutorCadastroEmail;
+import br.gov.incra.cadastrobeneficiarios.model.repository.ContaRepository;
+import br.gov.incra.cadastrobeneficiarios.service.executor.AbstractExecutorCadastroConta;
 
-public class ExecutorAlteraConta extends AbstractExecutorCadastroEmail {
+public class ExecutorAlteraConta extends AbstractExecutorCadastroConta {
     
-    public ExecutorAlteraConta(EmailRepository emailRepository) {
-        super(emailRepository);
+    public ExecutorAlteraConta(ContaRepository contaRepository) {
+        super(contaRepository);
     }
 
     @Override
-    protected boolean isFuncionalidadeAlteracaoEmail() {
+    protected boolean isFuncionalidadeAlteracaoConta() {
         return true;
     }
 }

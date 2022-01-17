@@ -15,7 +15,6 @@ public class CadastroBeneficiarioForm {
     }
   
     public List<ContaForm> getContas() {
-      // Esse metodo eu consigo proteger minha listas de contas//
       return Collections.unmodifiableList(this.contas);
     }
   

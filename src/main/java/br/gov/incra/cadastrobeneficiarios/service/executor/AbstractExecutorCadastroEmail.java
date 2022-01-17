@@ -24,7 +24,7 @@ public abstract class AbstractExecutorCadastroEmail implements AcaoCadastroBenef
         if (isFuncionalidadeAlteracaoEmail()) {
             List<Email> listaEmails = emailRepository.findByCpf(form.getBeneficiario().getCpf());
             List<Email> diferenca = listaEmails.stream().filter(email -> !novaListaEmails.contains(email))
-                    .collect(Collectors.toList());
+                .collect(Collectors.toList());
             emailRepository.deleteAll(diferenca);
         }
 
