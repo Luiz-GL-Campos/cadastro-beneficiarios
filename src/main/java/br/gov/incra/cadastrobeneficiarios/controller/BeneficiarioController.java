@@ -1,6 +1,7 @@
 package br.gov.incra.cadastrobeneficiarios.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.incra.cadastrobeneficiarios.form.CadastroBeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.model.dto.BeneficiarioDTO;
+import br.gov.incra.cadastrobeneficiarios.model.dto.ListarBeneficiarioDTO;
 import br.gov.incra.cadastrobeneficiarios.service.AlteraBeneficiarioService;
 import br.gov.incra.cadastrobeneficiarios.service.CadastroBeneficiarioService;
 import br.gov.incra.cadastrobeneficiarios.service.DetalhaBeneficiarioService;
 import br.gov.incra.cadastrobeneficiarios.service.ExcluirBeneficiarioService;
+import br.gov.incra.cadastrobeneficiarios.service.ListarBeneficiarioService;
 
 @RestController
 @RequestMapping(path = "/beneficiario")
@@ -27,16 +30,19 @@ public class BeneficiarioController {
     public final AlteraBeneficiarioService alteraBeneficiarioService;
     public final ExcluirBeneficiarioService excluirBeneficiarioService;
     public final DetalhaBeneficiarioService detalhaBeneficiarioService;
+    public final ListarBeneficiarioService listarBeneficiarioService;
     
     public BeneficiarioController(CadastroBeneficiarioService cadastroBeneficiarioService, 
         AlteraBeneficiarioService alteraBeneficiarioService,
         ExcluirBeneficiarioService excluirBeneficiarioService,
-        DetalhaBeneficiarioService detalhaBeneficiarioService
+        DetalhaBeneficiarioService detalhaBeneficiarioService,
+        ListarBeneficiarioService listarBeneficiarioService
     ) {
         this.cadastroBeneficiarioService = cadastroBeneficiarioService;
         this.alteraBeneficiarioService = alteraBeneficiarioService;
         this.excluirBeneficiarioService = excluirBeneficiarioService;
         this.detalhaBeneficiarioService = detalhaBeneficiarioService;
+        this.listarBeneficiarioService = listarBeneficiarioService;
     }
 
     @PostMapping
@@ -57,5 +63,10 @@ public class BeneficiarioController {
     @GetMapping(path = "/{cpf}")
     public ResponseEntity<?> detalhar(@PathVariable String cpf){
         return ResponseEntity.ok(detalhaBeneficiarioService.obterPor(cpf));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ListarBeneficiarioDTO>> listar(){
+        return ResponseEntity.ok(listarBeneficiarioService.listar());
     }
 }
