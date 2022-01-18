@@ -7,7 +7,7 @@ public class ExcluirTelefone implements AcaoExcluirBeneficiario {
 
     private final TelefoneRepository telefoneRepository;
 
-    public ExcluirTelefone(TelefoneRepository telefoneRepository) {
+    public ExcluirTelefone(TelefoneRepository telefoneRepository){ 
         this.telefoneRepository = telefoneRepository;
     }
 
