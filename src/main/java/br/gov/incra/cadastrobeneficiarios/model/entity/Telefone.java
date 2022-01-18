@@ -30,6 +30,7 @@ public class Telefone {
     private String cpf;
     @Column(name = "id_tipo_telefone")
     private Long idTipoTelefone;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpf_beneficiario", insertable = false, updatable = false)
     private Beneficiario beneficiario;

@@ -33,9 +33,10 @@ public class Endereco {
     @Column(name = "numero")
     private String numero;
     @Column(name = "cpf_beneficiario")
-    private String cpfBeneficiario;
+    private String cpf;
     @Column(name = "id_municipio")
     private Long idMunicipio;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CPF", insertable = false, updatable = false)
     private Beneficiario beneficiario;
@@ -58,7 +59,7 @@ public class Endereco {
         this.endereco = endereco;
         this.enderecoAtivo = enderecoAtivo;
         this.numero = numero;
-        this.cpfBeneficiario = cpfBeneficiario;
+        this.cpf = cpfBeneficiario;
         this.idMunicipio = idMunicipio;
     }
 
@@ -68,7 +69,7 @@ public class Endereco {
         this.endereco = enderecoForm.getEndereco();
         this.enderecoAtivo = enderecoForm.getEnderecoAtivo();
         this.numero = enderecoForm.getNumero();
-        this.cpfBeneficiario = beneficiarioForm.getCpf();
+        this.cpf = beneficiarioForm.getCpf();
         this.idMunicipio = enderecoForm.getMunicipioForm().getIdMunicipio();
     }
 
@@ -125,12 +126,12 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public String getCpfBeneficiario() {
-        return this.cpfBeneficiario;
+    public String getCpf() {
+        return this.cpf;
     }
 
-    public void setCpfBeneficiario(String cpfBeneficiario) {
-        this.cpfBeneficiario = cpfBeneficiario;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Long getIdMunicipio() {

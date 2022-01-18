@@ -8,4 +8,5 @@ import br.gov.incra.cadastrobeneficiarios.model.entity.Telefone;
 
 public interface TelefoneRepository extends JpaRepository<Telefone, Long> {
     List<Telefone> findByCpf(String cpf);
+    void deleteByCpf(String cpf);
 }

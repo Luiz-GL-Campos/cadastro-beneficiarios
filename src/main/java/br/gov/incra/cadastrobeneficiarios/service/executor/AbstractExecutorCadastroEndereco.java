@@ -22,9 +22,10 @@ public abstract class AbstractExecutorCadastroEndereco implements AcaoCadastroBe
 
         if(isFuncionalidadeAlteracaoEndereco()) {
             List<Endereco> listaEnderecos = enderecoRepository.findByCpf(form.getBeneficiario().getCpf());
-            List<Endereco> diferenca = listaEnderecos.stream().filter(endereco -> !novaListaEnderecos.contains(endereco))
+            List<Endereco> enderecosAlterados = listaEnderecos.stream().filter(endereco -> !novaListaEnderecos.contains(endereco))
                 .collect(Collectors.toList());
-            enderecoRepository.deleteAll(diferenca);
+            enderecosAlterados.forEach(endereco -> endereco.setEnderecoAtivo(false));
+            enderecoRepository.saveAll(enderecosAlterados);
         }
         enderecoRepository.saveAll(novaListaEnderecos);
     }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.gov.incra.cadastrobeneficiarios.form.CadastroBeneficiarioForm;
 import br.gov.incra.cadastrobeneficiarios.model.dto.BeneficiarioDTO;
+import br.gov.incra.cadastrobeneficiarios.service.AlteraBeneficiarioService;
 import br.gov.incra.cadastrobeneficiarios.service.CadastroBeneficiarioService;
 
 @RestController
@@ -18,9 +19,13 @@ import br.gov.incra.cadastrobeneficiarios.service.CadastroBeneficiarioService;
 public class BeneficiarioController {
 
     public final CadastroBeneficiarioService cadastroBeneficiarioService;
+    public final AlteraBeneficiarioService alteraBeneficiarioService;
     
-    public BeneficiarioController(CadastroBeneficiarioService cadastroBeneficiarioService) {
+    public BeneficiarioController(CadastroBeneficiarioService cadastroBeneficiarioService, 
+        AlteraBeneficiarioService alteraBeneficiarioService
+    ) {
         this.cadastroBeneficiarioService = cadastroBeneficiarioService;
+        this.alteraBeneficiarioService = alteraBeneficiarioService;
     }
 
     @PostMapping
@@ -30,6 +35,6 @@ public class BeneficiarioController {
 
     @PutMapping
     public ResponseEntity<BeneficiarioDTO> alterarBeneficiario(@RequestBody CadastroBeneficiarioForm cadastroBeneficiarioForm){
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(alteraBeneficiarioService.altera(cadastroBeneficiarioForm));
     }
 }

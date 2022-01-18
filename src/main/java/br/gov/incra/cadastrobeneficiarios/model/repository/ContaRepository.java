@@ -8,5 +8,5 @@ import br.gov.incra.cadastrobeneficiarios.model.entity.Conta;
 
 public interface ContaRepository extends JpaRepository<Conta, Long>{
     List<Conta> findByCpf(String cpf);
-    
+    void deleteByCpf(String cpf);
 }

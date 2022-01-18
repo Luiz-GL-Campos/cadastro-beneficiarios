@@ -32,7 +32,7 @@ public class Conta {
     @Column(name = "cod_banco")
     private Long codBanco;
     @Column(name = "cpf_beneficiario")
-    private String cpfBeneficiario;
+    private String cpf;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_conta", insertable = false, updatable = false)
@@ -56,7 +56,7 @@ public class Conta {
         this.numeroConta = numeroConta;
         this.idTipoConta = idTipoConta;
         this.codBanco = codBanco;
-        this.cpfBeneficiario = cpfBeneficiario;
+        this.cpf = cpfBeneficiario;
     }
 
     public Conta(ContaForm conta, BeneficiarioForm beneficiarioForm) {
@@ -64,7 +64,7 @@ public class Conta {
         this.numeroConta = conta.getNumeroConta();
         this.idTipoConta = conta.getIdTipoConta();
         this.codBanco = conta.getCodBanco();
-        this.cpfBeneficiario = beneficiarioForm.getCpf();
+        this.cpf = beneficiarioForm.getCpf();
     }
 
     public String getAgencia() {
@@ -87,8 +87,8 @@ public class Conta {
         return this.idConta;
     }
 
-    public String getCpfBeneficiario() {
-        return this.cpfBeneficiario;
+    public String getCpf() {
+        return this.cpf;
     }
 
     public TipoConta getTipoConta() {

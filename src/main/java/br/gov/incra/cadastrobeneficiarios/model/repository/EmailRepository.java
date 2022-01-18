@@ -9,4 +9,5 @@ import br.gov.incra.cadastrobeneficiarios.model.entity.Email;
 
 public interface EmailRepository extends JpaRepository<Email, Long> {
     List<Email> findByCpf(String cpf);
+    void deleteByCpf(String cpf);
 }

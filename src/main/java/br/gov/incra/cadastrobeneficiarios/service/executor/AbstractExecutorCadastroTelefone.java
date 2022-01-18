@@ -24,9 +24,10 @@ public abstract class AbstractExecutorCadastroTelefone implements AcaoCadastroBe
 
         if(isFuncionalidadeAlteracaoTelefone()) {
             List<Telefone> listaTelefones = telefoneRepository.findByCpf(form.getBeneficiario().getCpf());
-            List<Telefone> diferenca = listaTelefones.stream().filter(telefone -> !novaListaTelefones.contains(telefone))
+            List<Telefone> telefonesAlterados = listaTelefones.stream().filter(telefone -> !novaListaTelefones.contains(telefone))
                 .collect(Collectors.toList());
-                telefoneRepository.deleteAll(diferenca);
+            telefonesAlterados.forEach(telefone -> telefone.setAtivo(false));
+            telefoneRepository.saveAll(telefonesAlterados);
         }
         telefoneRepository.saveAll(novaListaTelefones);
     }

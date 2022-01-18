@@ -23,16 +23,14 @@ public class Email {
     @SequenceGenerator(name = "beneficiario.id_email_seq", sequenceName = "beneficiario.id_email_seq", initialValue = 1, allocationSize = 1)
     @GeneratedValue(generator = "beneficiario.id_email_seq", strategy = GenerationType.SEQUENCE)
     private Long idEmail;
-
     @Column(name = "enderenco_email")
     private String enderecoEmail;
-
     @Column(name = "cpf_beneficiario")
     private String cpf;
-
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpf_beneficiario", insertable = false, updatable = false)
-    private Beneficiario cpfBeneficiario;
+    private Beneficiario beneficiario;
     
     public Email(){}
 
@@ -70,12 +68,12 @@ public class Email {
         this.cpf = cpf;
     }
 
-    public Beneficiario getCpfBeneficiario() {
-        return this.cpfBeneficiario;
+    public Beneficiario getBeneficiario() {
+        return this.beneficiario;
     }
 
-    public void setCpfBeneficiario(Beneficiario cpfBeneficiario) {
-        this.cpfBeneficiario = cpfBeneficiario;
+    public void setBeneficiario(Beneficiario beneficiario) {
+        this.beneficiario = beneficiario;
     }
 
 }

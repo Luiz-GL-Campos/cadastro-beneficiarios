@@ -19,8 +19,9 @@ import br.gov.incra.cadastrobeneficiarios.service.executor.cadastro.ExecutorCada
 @Service
 public class CadastroBeneficiarioService {
 
-    private List<AcaoCadastroBeneficiario> acoes = new ArrayList<>();
+    private final DetalhaBeneficiarioService detalhaBeneficiarioService;
     private final ExecutorCadastroBeneficiario beneficiario;
+    private List<AcaoCadastroBeneficiario> acoes = new ArrayList<>();
     private final ExecutorCadastroConta conta;
     private final ExecutorCadastroEmail email;
     private final ExecutorCadastroMunicipio municipio;
@@ -28,10 +29,11 @@ public class CadastroBeneficiarioService {
     private final ExecutorCadastroTelefone telefone;
     private final ExecutorCadastroSituacao situacao;
 
-    public CadastroBeneficiarioService(ExecutorCadastroBeneficiario beneficiario, ExecutorCadastroConta conta, 
+    public CadastroBeneficiarioService(DetalhaBeneficiarioService detalhaBeneficiarioService, ExecutorCadastroBeneficiario beneficiario, ExecutorCadastroConta conta, 
         ExecutorCadastroEmail email, ExecutorCadastroMunicipio municipio, ExecutorCadastroEndereco endereco, ExecutorCadastroTelefone telefone,
         ExecutorCadastroSituacao situacao
     ) {
+        this.detalhaBeneficiarioService = detalhaBeneficiarioService;
         this.beneficiario = beneficiario;
         this.conta = conta;
         this.email = email;
@@ -45,7 +47,7 @@ public class CadastroBeneficiarioService {
     @Transactional
     public BeneficiarioDTO cadastrar(CadastroBeneficiarioForm cadastroBeneficiarioForm) {
         acoes.forEach(acao -> acao.executa(cadastroBeneficiarioForm));
-        return null;
+        return detalhaBeneficiarioService.obterPor(cadastroBeneficiarioForm.getBeneficiario().getCpf());
     }
 
     private void adicinaAcoes() {
